@@ -14,6 +14,7 @@ class Person {
 
 class Student extends Person {
   late String uni;
+  late Address address;
   String? mobile;
 
   Student({
@@ -21,6 +22,7 @@ class Student extends Person {
     required super.gender,
     required super.dob,
     required this.uni,
+    required this.address,
     this.mobile,
   });
 
@@ -34,11 +36,13 @@ class Student extends Person {
 
 class Beggar extends Person {
   late int dailyIncome;
+  late Address address; // has a relationship
 
   Beggar({
     required super.name,
     required super.gender,
     required super.dob,
+    required this.address,
     required this.dailyIncome,
 });
 
@@ -49,13 +53,20 @@ class Beggar extends Person {
   }
 }
 
+class Address {
+  late String houseNum;
+  late String streetNum;
+  late String city;
+  
+  Address({required this.houseNum, required this.streetNum, required this.city});
+}
 
 void main() {
-  Student s = Student(name: "Ali", gender: "M", dob: "2 May", uni: "AJK");
+  Student s = Student(name: "Ali", gender: "M", dob: "2 May", uni: "AJK", address: Address(houseNum: '1', streetNum: '20', city: 'PSH'));
   s.display();
 
   print("********************");
-  Beggar khan = Beggar(name: "SS", gender: "M", dob: "2 Nov", dailyIncome: 2000);
+  Beggar khan = Beggar(name: "SS", gender: "M", dob: "2 Nov", dailyIncome: 2000, address: Address(houseNum: '7', streetNum: '9', city: "MZD"));
   khan.display();
 
   List<Person> personList = [
